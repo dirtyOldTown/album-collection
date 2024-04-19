@@ -58,7 +58,7 @@ function read() {
   }
 }
 
-//read();
+read();
 
 let primaryKey;
 function update(key) {
