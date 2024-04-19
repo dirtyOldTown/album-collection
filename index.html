@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB [CD-Collection]</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="collection.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <header>
+    <h1>DISC COLLECTION</h1> 
+  </header>
+  <section id="collection">
+    <form id="add-album" name="add-album">
+      <input type="text" placeholder="serial number" name="number">
+      <input type="text" placeholder="genre" name="genre">
+      <input type="text" placeholder="band" name="band">
+      <input type="text" placeholder="album" name="album">
+      <input type="text" placeholder="year" name="year">
+      <button type="button" id="btnAddAlbum">add album</button>
+      <button class="hide" type="button" id="btnUpdateAlbum">update</button>
+    </form>
+    <table id="cd-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Genre</th>
+          <th>Band</th>
+          <th>Album</th>
+          <th>Year</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+   </section> 
+</body>
+</html>
