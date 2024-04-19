@@ -1,1 +1,1 @@
-# CD-Collection with indexedDB
+# CD-Collection based on indexedDB
