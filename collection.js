@@ -4,7 +4,7 @@ const btnUpdateAlbum = document.getElementById("btnUpdateAlbum");
 const tbody = document.querySelector("#cd-table > tbody");
 let db = null;
 
-btnAddAlbum.addEventListener("click", addItem);
+btnAddAlbum.addEventListener("click", () => addItem);
 btnUpdateAlbum.addEventListener("click", updates);
 
 function addItem() {
