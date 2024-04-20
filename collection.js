@@ -53,7 +53,6 @@ btnAddAlbum.addEventListener("click", addItem);
           `
           curRes.continue();
         } 
-  
       } 
     }
   }
