@@ -39,7 +39,8 @@ function read() {
         console.log(curRes);
         curRes.continue();
       } else {
-        return false
+        alert("Must add initial furst record!")
+        return false;
       }
     }
   }
