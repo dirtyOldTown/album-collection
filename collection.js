@@ -22,15 +22,14 @@ function addItem() {
       year: addAlbum[4].value,
     });
   }
-  read();
 }
 
 btnAddAlbum.addEventListener("click", addItem);
 
-function read() {
+  function read() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
-    db = e.target.result;
+    db = request.result;
     let tx = db.transaction("albums", "readonly");
     let store = tx.objectStore("albums");
     let cursor = store.openCursor();
@@ -48,9 +47,11 @@ function read() {
             <td class="icon upd"><i class="fa fa-cog"></i></td>
             <td class="icon upd"><i class="fa fa-trash"></i></td>
           </tr>
-        `
-        curRes.continue();
+          `
+          curRes.continue();
+        } 
       } 
     }
   }
-}
+
+read()
