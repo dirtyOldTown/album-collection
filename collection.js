@@ -10,7 +10,6 @@ function addItem() {
     db = e.target.result;
     db.createObjectStore("albums", { autoIncrement: true});
   }
-
   request.onsuccess = function(e) {
     db = e.target.result;
     let tx = db.transaction("albums", "readwrite");
@@ -26,3 +25,20 @@ function addItem() {
 }
 
 btnAddAlbum.addEventListener("click", addItem);
+
+function read() {
+  let request = indexedDB.open("collection", 1);
+  request.onsuccess = function(e) {
+    db = e.target.result;
+    let tx = db.transaction("albums", "readonly");
+    let store = tx.objectStore("albums");
+    let cursor = store.openCursor();
+    let curRes = cursor.result;
+
+    if (curRes) {
+      console.log(curRes);
+      curRes.continue();
+    }
+  }
+}
+read()
