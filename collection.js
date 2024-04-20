@@ -3,7 +3,6 @@ const btnAddAlbum = document.getElementById("btnAddAlbum");
 const btnUpdateAlbum = document.getElementById("btnUpdateAlbum");
 const tbody = document.querySelector("#cd-table > tbody");
 let db = null;
-
 function addItem() {
   let request = indexedDB.open("collection", 1);
   request.onupgradeneeded = function(e) {
@@ -52,7 +51,7 @@ btnAddAlbum.addEventListener("click", addItem);
       } 
     }
   }
-  
-  //read()
+read()
+
   
 
