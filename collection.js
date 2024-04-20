@@ -38,6 +38,8 @@ function read() {
     if (curRes) {
       console.log(curRes);
       curRes.continue();
+    } else {
+      return false
     }
   }
 }
