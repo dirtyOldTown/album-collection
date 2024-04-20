@@ -22,6 +22,7 @@ function addItem() {
       year: addAlbum[4].value,
     });
   }
+  read();
 }
 
 btnAddAlbum.addEventListener("click", addItem);
@@ -53,4 +54,3 @@ function read() {
     }
   }
 }
-read()
