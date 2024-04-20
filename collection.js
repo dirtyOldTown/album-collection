@@ -15,14 +15,18 @@ function addItem() {
     db = e.target.result;
     let tx = db.transaction("albums", "readwrite");
     let store = tx.objectStore("albums");
-    store.put({
-      number: addAlbum[0].value,
-      genre: addAlbum[1].value,
-      band: addAlbum[2].value,
-      album: addAlbum[3].value,
-      year: addAlbum[4].value,
-    });
-    location.reload();
+    if(confirm("About added record, Are you sure ?")) {
+      store.put({
+        number: addAlbum[0].value,
+        genre: addAlbum[1].value,
+        band: addAlbum[2].value,
+        album: addAlbum[3].value,
+        year: addAlbum[4].value,
+      });
+      location.reload();
+    } else {
+        return false;
+    }
   }
 }
 
