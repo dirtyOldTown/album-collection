@@ -37,6 +37,17 @@ function read() {
       let curRes = cursor.result;
       if (curRes) {
         console.log(curRes);
+        tbody.innerHTML += `
+          <tr>
+            <td>${curRes.value.number}</td>
+            <td>${curRes.value.genre}</td>
+            <td>${curRes.value.band}</td>
+            <td>${curRes.value.album}</td>
+            <td>${curRes.value.year}</td>
+            <td class="icon upd"><i class="fa fa-cog"></i></td>
+            <td class="icon upd"><i class="fa fa-trash"></i></td>
+          </tr>
+        `
         curRes.continue();
       } 
     }
