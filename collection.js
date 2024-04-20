@@ -33,13 +33,14 @@ function read() {
     let tx = db.transaction("albums", "readonly");
     let store = tx.objectStore("albums");
     let cursor = store.openCursor();
-    let curRes = cursor.result;
-
-    if (curRes) {
-      console.log(curRes);
-      curRes.continue();
-    } else {
-      return false
+    cursor.onsuccess = function() {
+      let curRes = cursor.result;
+      if (curRes) {
+        console.log(curRes);
+        curRes.continue();
+      } else {
+        return false
+      }
     }
   }
 }
