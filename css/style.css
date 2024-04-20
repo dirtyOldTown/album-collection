@@ -41,7 +41,7 @@ body {
   #cd-table {
     flex-basis: 65%;
     font-size: 1.1em;
-    background-color:silver;
+    background-color:#EDEAE0;
     text-align: center;
   }
   #cd-table, th, td {
@@ -50,7 +50,7 @@ body {
     border-collapse: collapse
   }
   #cd-table td {
-    background-color: antiquewhite;
+    background-color: whitesmoke;
   }
   #cd-table .icon {
     cursor: pointer;
