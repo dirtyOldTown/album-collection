@@ -7,7 +7,7 @@ let db = null;
 function addItem() {
   let request = indexedDB.open("collection", 1);
   request.onupgradeneeded = function(e) {
-    db = e.target.result;
+    db = request.result;
     db.createObjectStore("albums", { autoIncrement: true});
   }
   request.onsuccess = function(e) {
@@ -25,7 +25,6 @@ function addItem() {
 }
 
 btnAddAlbum.addEventListener("click", addItem);
-
   function read() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
@@ -53,5 +52,7 @@ btnAddAlbum.addEventListener("click", addItem);
       } 
     }
   }
+  
+  //read()
+  
 
-read()
