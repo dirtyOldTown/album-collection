@@ -3,6 +3,8 @@ const btnAddAlbum = document.getElementById("btnAddAlbum");
 const btnUpdateAlbum = document.getElementById("btnUpdateAlbum");
 const tbody = document.querySelector("#cd-table > tbody");
 let db = null;
+
+// Creating an indexed database, Create Object Store, Data entry
 function addItem() {
   let request = indexedDB.open("collection", 1);
   request.onupgradeneeded = function(e) {
@@ -25,6 +27,8 @@ function addItem() {
 }
 
 btnAddAlbum.addEventListener("click", addItem);
+
+// Completing the html-table
   function read() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
@@ -53,17 +57,17 @@ btnAddAlbum.addEventListener("click", addItem);
       } 
     }
   }
-// Fill initial record in database
+
 read();
 
+// Prepare form fields for update record
 let primaryKey;
-
 function showUpdateButton(key) {
   btnAddAlbum.style.display = "none";
   btnUpdateAlbum.style.display = "block";
   primaryKey = key;
+  addAlbum[0].focus();
 
-  // prepare form inputs for update record
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = e.target.result;
@@ -83,7 +87,7 @@ function showUpdateButton(key) {
     }
   }
 }
-
+// Editing the selected record in the database
 function update() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
@@ -107,7 +111,7 @@ function update() {
 
 btnUpdateAlbum.addEventListener("click", update);
 
-// Delete record
+// Deleting the selected record in the database
 function del(key) {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
