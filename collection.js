@@ -38,10 +38,7 @@ function read() {
       if (curRes) {
         console.log(curRes);
         curRes.continue();
-      } else {
-        alert("Must add initial furst record!")
-        return false;
-      }
+      } 
     }
   }
 }
