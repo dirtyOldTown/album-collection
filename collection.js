@@ -3,7 +3,6 @@ const btnAddAlbum = document.getElementById("btnAddAlbum");
 const btnUpdateAlbum = document.getElementById("btnUpdateAlbum");
 const tbody = document.querySelector("#cd-table > tbody");
 let db = null;
-
 // Creating an indexed database, Create Object Store, Data entry
 function addItem() {
   let request = indexedDB.open("collection", 1);
@@ -70,7 +69,6 @@ function showUpdateButton(key) {
   btnUpdateAlbum.style.display = "block";
   primaryKey = key;
   addAlbum[0].focus();
-
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = e.target.result;
