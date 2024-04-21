@@ -70,7 +70,8 @@ function read() {
     }
   }
 
-read()
+read();
+
 // Prepare form fields for update record
 let primaryKey;
 function showUpdateButton(key) {
@@ -120,7 +121,7 @@ function update() {
   }
 }
 
-
+btnUpdateAlbum.addEventListener("click", update);
 
 //Deleting the selected record in the database
 function del(key) {
