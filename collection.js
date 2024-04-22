@@ -9,12 +9,16 @@ let store = null;
 let request = indexedDB.open("collection", 1);
 request.onupgradeneeded = function(e) {
   db = request.result;
-  db.createObjectStore("albums", { autoIncrement: true});
+  let objectStore = db.createObjectStore("albums", { autoIncrement: true });
+  objectStore.createIndex("band_name", "band", { unique: false });
 }
 request.onsuccess = function(e) {
   db = e.target.result;
   let tx = db.transaction("albums", "readwrite");
   store = tx.objectStore("albums");
+}
+request.onerror = function(e) {
+  console.log(e.target.error)
 }
 
 // Creating an indexed database, Create Object Store, Data entry
@@ -25,7 +29,7 @@ function addItem() {
     let tx = db.transaction("albums", "readwrite");
     let store = tx.objectStore("albums");
     if(confirm("About added record, Are you sure ?")) {
-      store.add({
+      store.put({
         number: addAlbum[0].value,
         genre: addAlbum[1].value,
         band: addAlbum[2].value,
@@ -64,7 +68,7 @@ function read() {
           <td class="icon del" onclick="del(${curRes.key})"><i class="fa fa-trash"></i></td>
         </tr>
         `
-          curRes.continue();
+        curRes.continue();
         } 
       }
     }
@@ -139,5 +143,47 @@ function del(key) {
   }
 }
 
+// Search handler
+const searchInput = document.getElementById("search-input");
+const btnSearch = document.getElementById("btnSearch");
+const btnRefresh = document.getElementById("btnRefresh");
 
+searchInput.onchange = () => {
+  searchInput.value = searchInput.value.substring(0, 1).toUpperCase() + searchInput.value.slice(1)
+}
+function search() {
+  let request = indexedDB.open("collection", 1);
+  request.onsuccess = function(e) {
+    db = request.result;
+    let tx = db.transaction("albums", "readonly");
+    store = tx.objectStore("albums");
+    let index = store.index("band_name");
+    let getRequest = index.getAll(searchInput.value);
+    getRequest.onsuccess = function(e) {
+      let result = e.target.result;
+      if (result.length > 0) {
+      tbody.innerHTML = "";
+  
+      for (let x of result) {
+        tbody.innerHTML += `
+        <tr>
+          <td>${x.number}</td>
+            <td>${x.genre}</td>
+            <td>${x.band}</td>
+            <td>${x.album}</td>
+            <td>${x.year}</td>
+          </tr>
+          `
+      }
 
+      } else {
+        alert(`No band found in collection!`);
+      }
+    } 
+  }
+}
+
+btnSearch.addEventListener("click", search);
+btnRefresh.addEventListener("click", () => {
+  searchInput.value = "";
+})
