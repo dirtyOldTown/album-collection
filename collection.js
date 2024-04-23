@@ -7,21 +7,44 @@ const tbody = document.querySelector("#cd-table > tbody");
 let db = null;
 let store = null;
 let request = indexedDB.open("collection", 1);
+
 request.onupgradeneeded = function(e) {
   db = request.result;
   let objectStore = db.createObjectStore("albums", { autoIncrement: true });
   objectStore.createIndex("band_name", "band", { unique: false });
+  objectStore.createIndex("genre_name", "genre", { unique: false });
 }
+
 request.onsuccess = function(e) {
   db = e.target.result;
   let tx = db.transaction("albums", "readwrite");
   store = tx.objectStore("albums");
 }
+
 request.onerror = function(e) {
   console.log(e.target.error)
 }
 
-// Creating an indexed database, Create Object Store, Data entry
+// Data entry
+const btnDataRefresh = document.getElementById("btnDataRefresh");
+btnDataRefresh.onclick = function(e) {
+  for (let item of addAlbum.elements) {
+    if (item.tagName == "INPUT") {
+      item.value = "";
+    }
+  }
+}
+
+addAlbum.onchange = function(e) {
+  let target = e.target.closest("input");
+  target.value = target.value.toLowerCase();
+  let splitString = target.value.split(" ");
+  let newString = splitString.map(str => {
+    return str.substring(0, 1).toUpperCase() + str.slice(1)
+  });
+
+  target.value = newString.join(" ");
+}
 function addItem() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
@@ -30,7 +53,6 @@ function addItem() {
     let store = tx.objectStore("albums");
     if(confirm("About added record, Are you sure ?")) {
       store.put({
-        number: addAlbum[0].value,
         genre: addAlbum[1].value,
         band: addAlbum[2].value,
         album: addAlbum[3].value,
@@ -47,6 +69,7 @@ btnAddAlbum.addEventListener("click", addItem);
 
 // Completing the html-table
 function read() {
+  let n = 1;
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = request.result;
@@ -56,25 +79,25 @@ function read() {
     cursor.onsuccess = function() {
     let curRes = cursor.result;
     if (curRes) {
-      console.log(curRes);
       tbody.innerHTML += `
         <tr>
-          <td>${curRes.value.number}</td>
+          <td>${n++}</td>
           <td>${curRes.value.genre}</td>
           <td>${curRes.value.band}</td>
           <td>${curRes.value.album}</td>
           <td>${curRes.value.year}</td>
-          <td class="icon upd" onclick="showUpdateButton(${curRes.key})"><i class="fa fa-cog"></i></td>
-          <td class="icon del" onclick="del(${curRes.key})"><i class="fa fa-trash"></i></td>
+          <td class="icon upd" title="update record" onclick="showUpdateButton(${curRes.key})"><i class="fa fa-cog"></i></td>
+          <td class="icon del" title="delete record" onclick="del(${curRes.key})"><i class="fa fa-trash"></i></td>
         </tr>
         `
         curRes.continue();
+  
         } 
       }
     }
   }
 
-read();
+  read();
 
 // Prepare form fields for update record
 let primaryKey;
@@ -82,7 +105,7 @@ function showUpdateButton(key) {
   btnAddAlbum.style.display = "none";
   btnUpdateAlbum.style.display = "block";
   primaryKey = key;
-  addAlbum[0].focus();
+  addAlbum[1].focus();
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = e.target.result;
@@ -92,7 +115,6 @@ function showUpdateButton(key) {
     cursor.onsuccess = function(e) {
       let curRes = cursor.result;
       if (curRes) {
-        addAlbum[0].value = curRes.value.number;
         addAlbum[1].value = curRes.value.genre;
         addAlbum[2].value = curRes.value.band;
         addAlbum[3].value = curRes.value.album;
@@ -112,7 +134,6 @@ function update() {
     store = tx.objectStore("albums");
     if (confirm("About update record, Are you sure?")) {
       store.put({
-        number: addAlbum[0].value,
         genre: addAlbum[1].value,
         band: addAlbum[2].value,
         album: addAlbum[3].value,
@@ -144,40 +165,54 @@ function del(key) {
 }
 
 // Search handler
+
 const searchInput = document.getElementById("search-input");
 const btnSearch = document.getElementById("btnSearch");
 const btnRefresh = document.getElementById("btnRefresh");
+const thNumber = document.getElementById("thNumber");
 
-searchInput.onchange = () => {
-  searchInput.value = searchInput.value.substring(0, 1).toUpperCase() + searchInput.value.slice(1)
+searchInput.onchange = function(e) {
+  searchInput.value = searchInput.value.toLowerCase();
+  let splitString = searchInput.value.split(" ");
+  let newString = splitString.map(element => {
+    return element.substring(0, 1).toUpperCase() + element.slice(1)
+  });
+  console.log(newString.join(" "));
+  searchInput.value = newString.join(" ");
 }
+const searchSource = document.getElementById("search-source");
+let indexName = searchSource.value;
+searchSource.onchange = ()  => {
+  indexName = searchSource.value;
+}
+
 function search() {
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = request.result;
     let tx = db.transaction("albums", "readonly");
     store = tx.objectStore("albums");
-    let index = store.index("band_name");
+    let index = store.index(indexName);
     let getRequest = index.getAll(searchInput.value);
     getRequest.onsuccess = function(e) {
       let result = e.target.result;
       if (result.length > 0) {
+      thNumber.style.display = "none";
       tbody.innerHTML = "";
-  
+      
       for (let x of result) {
         tbody.innerHTML += `
         <tr>
-          <td>${x.number}</td>
-            <td>${x.genre}</td>
-            <td>${x.band}</td>
-            <td>${x.album}</td>
-            <td>${x.year}</td>
-          </tr>
-          `
+          <td>${x.genre}</td>
+          <td>${x.band}</td>
+          <td>${x.album}</td>
+          <td>${x.year}</td>
+        </tr>
+        `
       }
 
       } else {
-        alert(`No band found in collection!`);
+        alert(`No ${indexName} found in collection!`);
       }
     } 
   }
@@ -186,4 +221,7 @@ function search() {
 btnSearch.addEventListener("click", search);
 btnRefresh.addEventListener("click", () => {
   searchInput.value = "";
-})
+});
+
+
+

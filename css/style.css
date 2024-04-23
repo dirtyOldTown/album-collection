@@ -1,5 +1,5 @@
 body {
-    background-color:#2E5894 ;
+    background-color:#2E5894;
     margin: 0;
   }
   header {
@@ -8,20 +8,23 @@ body {
     justify-content: space-between;
     text-align: center;
     padding: 5px;
-    color:aquamarine;
-    border-bottom: 2px groove whitesmoke ;
-    padding-bottom: 5px;
+    color:whitesmoke;
+    border-bottom: 3px groove whitesmoke ;
+    padding-bottom: 8px;
+    font-family: Arial, Helvetica, sans-serif;
   }
   header h1 {
-   text-shadow:  1px 1px 2px black;
+   text-shadow:  2px 2px 2px black;
    margin-left: 20px;
   }
   #search-box {
     align-self: end;
+    margin-right: 5px;
   }
-  #search-box > input {
+  #search-input {
     border-radius: 5px;
-    border: 2px solid grey
+    border: 2px solid grey;
+    margin-left: -2px;
   }
   #search-box > input,  #btnSearch, #btnRefresh {
     padding: 7px;
@@ -32,6 +35,9 @@ body {
     margin-left: -4px;
     cursor: pointer;
   }
+  #search-source {
+   padding: 5px 0;
+  }
   #collection {
     display: flex;
     flex-direction: row;
@@ -41,10 +47,23 @@ body {
     justify-content: space-around;
   }
   #add-album {
-    flex-basis: 20%;
+    flex-basis: 17%;
     display:flex;
     flex-direction: column;
     align-items: center;
+    background-color:#2A3439;
+    padding: 0 10px 20px;
+    border-radius: 4px;
+  }
+  .data-entry {
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: whitesmoke;
+    font-size: 1.2em;
+    display: inline-block
+  }
+  #btnDataRefresh {
+    margin-left: 10px;
+    cursor: pointer;
   }
   #add-album > input {
     padding: 10px 20px;
@@ -65,16 +84,24 @@ body {
   #cd-table {
     flex-basis: 65%;
     font-size: 1.1em;
-    background-color:#EDEAE0;
+    /* #2A3439 */
     text-align: center;
+    background-color:  #2A3439; /*#00308F*/
   }
   #cd-table, th, td {
     padding: 10px 15px;
-    border: 1px solid grey;
-    border-collapse: collapse
+    border: 1px solid silver;
+    border-collapse: collapse;
   }
   #cd-table td {
     background-color: whitesmoke;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  #cd-table th {
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1em;
+    font-weight: 500;
   }
   #cd-table .icon {
     cursor: pointer;
@@ -84,9 +111,11 @@ body {
   #cd-table .icon:hover {
     opacity: 0.9;
   }
-  @media screen and (max-width: 772px) {
+  @media screen and (max-width: 992px) {
     header {
-      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      padding-bottom: 15px;
     }
     header h1 {
       flex-basis: 50%;
@@ -112,14 +141,15 @@ body {
       padding: 8px;
     }
   }
-  @media screen and (max-width: 600px) {
-    header {
-      align-items: center;
-      flex-direction: column;
-      padding-bottom: 15px;
-    }
+  @media screen and (max-width: 400px) {
     #cd-table {
       font-size: 1em;
+    }
+    #cd-table .icon {
+      display: none;
+    }
+    #search-input {
+     max-width: 140px
     }
   }
   

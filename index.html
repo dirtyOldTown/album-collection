@@ -14,14 +14,23 @@
   <header>
     <h1>DISC COLLECTION</h1> 
     <aside id="search-box">
-      <input id="search-input" type="text" placeholder="band">
-      <button title="search" id="btnSearch"><i class="fa fa-search"></i></button>
-      <button title="refresh" id="btnRefresh"><i class="fa fa-refresh"></i></button>
+      <select id="search-source" name="search-source" title="search-source">
+        <option value="band_name">Band</option>
+        <option value="genre_name">Genre</option>
+        <option></option>
+      </select>
+      <input id="search-input" type="text" title="search-input">
+      <button type="button" title="search" id="btnSearch"><i class="fa fa-search"></i></button>
+      <button type="button" title="refresh" id="btnRefresh"><i class="fa fa-refresh"></i></button>
     </aside>
   </header>
   <section id="collection">
     <form id="add-album" name="add-album">
-      <input type="text" placeholder="serial number" name="number">
+      <p class="data-entry">Data Entry Fields 
+        <span>  
+        <button type="button" title="data-refresh" id="btnDataRefresh"><i class="fa fa-refresh"></i></button>
+        </span>
+      </p>
       <input type="text" placeholder="genre" name="genre">
       <input type="text" placeholder="band" name="band">
       <input type="text" placeholder="album" name="album">
@@ -32,7 +41,7 @@
     <table id="cd-table">
       <thead>
         <tr>
-          <th>No.</th>
+          <th id="thNumber">No.</th>
           <th>Genre</th>
           <th>Band</th>
           <th>Album</th>
