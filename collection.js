@@ -34,7 +34,6 @@ btnDataRefresh.onclick = function(e) {
     }
   }
 }
-
 addAlbum.onchange = function(e) {
   let target = e.target.closest("input");
   target.value = target.value.toLowerCase();
@@ -96,7 +95,7 @@ function read() {
     }
   }
 
-  read();
+read();
 
 // Prepare form fields for update record
 let primaryKey;
@@ -163,13 +162,11 @@ function del(key) {
   }
 }
 
-// Search handler
-
+// Search handlers
 const searchInput = document.getElementById("search-input");
 const btnSearch = document.getElementById("btnSearch");
 const btnRefresh = document.getElementById("btnRefresh");
 const thNumber = document.getElementById("thNumber");
-
 searchInput.onchange = function() {
   searchInput.value = searchInput.value.toLowerCase();
   let splitString = searchInput.value.split(" ");
@@ -183,8 +180,8 @@ let indexName = searchSource.value;
 searchSource.onchange = ()  => {
   indexName = searchSource.value;
 }
-
 function search() {
+  let n = 1;
   let request = indexedDB.open("collection", 1);
   request.onsuccess = function(e) {
     db = request.result;
@@ -195,12 +192,12 @@ function search() {
     getRequest.onsuccess = function(e) {
       let result = e.target.result;
       if (result.length > 0) {
-      thNumber.style.display = "none";
       tbody.innerHTML = "";
       
       for (let x of result) {
         tbody.innerHTML += `
         <tr>
+          <td>${n++}</td>
           <td>${x.genre}</td>
           <td>${x.band}</td>
           <td>${x.album}</td>
