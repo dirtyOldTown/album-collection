@@ -88,7 +88,6 @@ function read() {
           <td class="icon del" title="delete record" onclick="del(${curRes.key})"><i class="fa fa-trash"></i></td>
         </tr>
         `
-        mapTable.set(curRes.key, curRes.value)
         curRes.continue();
       } 
     }
