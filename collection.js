@@ -42,7 +42,6 @@ addAlbum.onchange = function(e) {
   let newString = splitString.map(str => {
     return str.substring(0, 1).toUpperCase() + str.slice(1)
   });
-
   target.value = newString.join(" ");
 }
 function addItem() {
@@ -171,13 +170,12 @@ const btnSearch = document.getElementById("btnSearch");
 const btnRefresh = document.getElementById("btnRefresh");
 const thNumber = document.getElementById("thNumber");
 
-searchInput.onchange = function(e) {
+searchInput.onchange = function() {
   searchInput.value = searchInput.value.toLowerCase();
   let splitString = searchInput.value.split(" ");
   let newString = splitString.map(element => {
     return element.substring(0, 1).toUpperCase() + element.slice(1)
   });
-  console.log(newString.join(" "));
   searchInput.value = newString.join(" ");
 }
 const searchSource = document.getElementById("search-source");
