@@ -23,7 +23,7 @@ body {
     display: flex;
     align-items: center;
   }
-  #title-box > img {
+  #picture {
     margin-left: 10px;
   }
   #search-box {
