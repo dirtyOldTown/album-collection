@@ -86,6 +86,7 @@ body {
     padding: 10px 0;
     margin-top: 3px;
     cursor: pointer;
+    color: #2A3439;
   }
   .hide {
     display: none;
