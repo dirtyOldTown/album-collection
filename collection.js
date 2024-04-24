@@ -2,6 +2,7 @@ const addAlbum = document.forms["add-album"];
 const btnAddAlbum = document.getElementById("btnAddAlbum");
 const btnUpdateAlbum = document.getElementById("btnUpdateAlbum");
 const tbody = document.querySelector("#cd-table > tbody");
+const title = document.querySelector("#title-box > h1");
 
 // Initialize database and object store
 let db = null;
@@ -216,6 +217,8 @@ btnSearch.addEventListener("click", search);
 btnRefresh.addEventListener("click", () => {
   searchInput.value = "";
 });
+
+title.onclick = () => location.reload();
 
 
 

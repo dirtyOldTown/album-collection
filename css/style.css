@@ -17,6 +17,7 @@ body {
   header h1 {
    text-shadow:  2px 2px 2px black;
    margin-left: 20px;
+   cursor: pointer;
   }
   #title-box {
     display: flex;
