@@ -153,6 +153,14 @@ body {
       padding: 8px;
     }
   }
+  @media screen and (max-width: 600px) {
+    #btnRefresh {
+      display: none;
+    }
+    #btnSearch {
+      margin-left: 0;
+    }
+  }
   @media screen and (max-width: 400px) {
     header h1 {
       font-size: 1.5em;
