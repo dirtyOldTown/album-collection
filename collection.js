@@ -138,13 +138,7 @@ function update() {
       }, primaryKey);
       location.reload();
     } else {
-      btnUpdateAlbum.style.display = "none";
-      btnAddAlbum.style.display = "block";
-      for (let item of addAlbum.elements) {
-        if (item.tagName == "INPUT") {
-          item.value = "";
-        }
-      }
+      location.reload();
     }
   }
 }
