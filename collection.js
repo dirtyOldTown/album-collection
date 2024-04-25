@@ -158,7 +158,7 @@ function del(key) {
     } else {
       return false;
     }
-    location.reload()
+    setTimeout(function(){window.location = window.location}, 100);
   }
 }
 
@@ -204,8 +204,7 @@ function search() {
           <td>${x.year}</td>
         </tr>
         `
-      }
-
+u      }
       } else {
         alert(`No ${indexName} found in collection!`);
       }
@@ -220,6 +219,45 @@ btnRefresh.addEventListener("click", () => {
 
 title.onclick = () => location.reload();
 
-
+// Sorting the table based on headers
+function showTable(sort, index) {
+  read();
+  setTimeout(() => {
+    sort(tbody, index)
+  }, 20);
+}
+function sorting(tbody, index) {
+  let mapItem = Array.from(tbody.rows)
+  mapItem.sort((a, b) => a.cells[index].innerHTML.localeCompare(b.cells[index].innerHTML));
+  tbody.innerHTML = "";
+  for (let x of mapItem) {
+  tbody.innerHTML += x.innerHTML;
+  }
+}
+let number = document.getElementById("number");
+number.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  showTable(sorting, 0);
+});
+let genre = document.getElementById("genre");
+genre.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  showTable(sorting, 1);
+});
+let band = document.getElementById("band");
+band.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  showTable(sorting, 2);
+});
+let album = document.getElementById("album");
+album.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  showTable(sorting, 3);
+});
+let year = document.getElementById("year");
+year.addEventListener("click", () => {
+  tbody.innerHTML = "";
+  showTable(sorting, 4);
+});
 
 
