@@ -137,9 +137,9 @@ function update() {
         album: addAlbum[3].value,
         year: addAlbum[4].value
       }, primaryKey);
-      location.reload();
+      setTimeout(function(){window.location = window.location}, 100);
     } else {
-      location.reload();
+      setTimeout(function(){window.location = window.location}, 100);
     }
   }
 }
@@ -204,7 +204,7 @@ function search() {
           <td>${x.year}</td>
         </tr>
         `
-u      }
+      }
       } else {
         alert(`No ${indexName} found in collection!`);
       }
