@@ -268,7 +268,6 @@ year.addEventListener("click", () => {
   setTimeout(() => {
     showTable(sorting, 4);
   }, 200);
-
 });
 
 

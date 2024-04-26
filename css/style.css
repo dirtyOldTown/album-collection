@@ -2,11 +2,6 @@ body {
     background-color:#2E5894; /*#082567, #2E5894*/
     margin: 0;
   }
-  .animate {
-    transition-property: opacity;
-    transition-duration: 2s;
-
-  }
   /* 
   @keyframes pageFadeIn {
     from { opacity:0; }
