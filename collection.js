@@ -195,8 +195,8 @@ function search() {
       let result = e.target.result;
       if (result.length > 0) {
       tbody.innerHTML = "";
-      iconUpd.classList.add("hide");
-      iconDel.classList.add("hide");
+      //iconUpd.classList.add("hide");
+      //iconDel.classList.add("hide");
       for (let x of result) {
         tbody.innerHTML += `
         <tr>
