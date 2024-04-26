@@ -119,6 +119,7 @@ body {
   }
   #cd-table .silver {
     color: silver;
+    cursor:auto;
   }
   #cd-table td {
     background-color: whitesmoke;
