@@ -137,9 +137,9 @@ function update() {
         album: addAlbum[3].value,
         year: addAlbum[4].value
       }, primaryKey);
-      setTimeout(function(){window.location = window.location}, 100);
+      setTimeout(function(){window.location = window.location}, 1000);
     } else {
-      setTimeout(function(){window.location = window.location}, 100);
+      setTimeout(function(){window.location = window.location}, 1000);
     }
   }
 }
@@ -237,27 +237,38 @@ function sorting(tbody, index) {
 let number = document.getElementById("number");
 number.addEventListener("click", () => {
   tbody.innerHTML = "";
-  showTable(sorting, 0);
+  setTimeout(() => {
+    showTable(sorting, 0);
+  }, 200);
 });
 let genre = document.getElementById("genre");
 genre.addEventListener("click", () => {
   tbody.innerHTML = "";
-  showTable(sorting, 1);
+  setTimeout(() => {
+    showTable(sorting, 1);
+  }, 200);
 });
 let band = document.getElementById("band");
 band.addEventListener("click", () => {
   tbody.innerHTML = "";
-  showTable(sorting, 2);
+  setTimeout(() => {
+    showTable(sorting, 2);
+  }, 200);
 });
 let album = document.getElementById("album");
 album.addEventListener("click", () => {
   tbody.innerHTML = "";
-  showTable(sorting, 3);
+  setTimeout(() => {
+    showTable(sorting, 3);
+  }, 200);
 });
 let year = document.getElementById("year");
 year.addEventListener("click", () => {
   tbody.innerHTML = "";
-  showTable(sorting, 4);
+  setTimeout(() => {
+    showTable(sorting, 4);
+  }, 200);
+
 });
 
 

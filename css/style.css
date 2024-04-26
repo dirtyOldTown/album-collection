@@ -2,6 +2,25 @@ body {
     background-color:#2E5894; /*#082567, #2E5894*/
     margin: 0;
   }
+  .animate {
+    transition-property: opacity;
+    transition-duration: 2s;
+
+  }
+  /* 
+  @keyframes pageFadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+  }
+  
+  body, #cd-table {
+    opacity:0;
+    animation:pageFadeIn ease-in 1;
+    animation-fill-mode:forwards;
+    animation-duration:0.15s;
+    animation-delay: .1s
+  } 
+  */
   header {
     display: flex;
     align-items: last baseline;
@@ -103,6 +122,9 @@ body {
     border: 1px solid silver;
     border-collapse: collapse;
   }
+  #cd-table .silver {
+    color: silver;
+  }
   #cd-table td {
     background-color: whitesmoke;
     font-family: 'Times New Roman', Times, serif;
@@ -113,6 +135,7 @@ body {
     font-size: 1em;
     font-weight: 500;
     cursor:pointer;
+    border: 1px solid grey;
   }
   #cd-table .icon {
     cursor: pointer;
@@ -169,9 +192,6 @@ body {
     }
     #cd-table {
       font-size: 1em;
-    }
-    #cd-table .icon {
-      display: none;
     }
     #search-input {
      max-width: 140px
