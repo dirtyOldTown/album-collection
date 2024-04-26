@@ -167,6 +167,8 @@ const searchInput = document.getElementById("search-input");
 const btnSearch = document.getElementById("btnSearch");
 const btnRefresh = document.getElementById("btnRefresh");
 const thNumber = document.getElementById("thNumber");
+const iconUpd = document.getElementById("iconUpd");
+const iconDel = document.getElementById("iconDel");
 searchInput.onchange = function() {
   searchInput.value = searchInput.value.toLowerCase();
   let splitString = searchInput.value.split(" ");
@@ -193,7 +195,8 @@ function search() {
       let result = e.target.result;
       if (result.length > 0) {
       tbody.innerHTML = "";
-      
+      iconUpd.classList.add("hide");
+      iconDel.classList.add("hide");
       for (let x of result) {
         tbody.innerHTML += `
         <tr>
