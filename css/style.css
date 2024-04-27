@@ -110,7 +110,10 @@ body {
     font-size: 1.1em;
     /* #2A3439 */
     text-align: center;
-    background-color:  #2A3439; /*#00308F*/
+    background-color:whitesmoke; /*#00308F*/
+  }
+  #cd-table > thead {
+    background-color:#2A3439;
   }
   #cd-table, th, td {
     padding: 10px 15px;
